@@ -5,9 +5,9 @@ import { GrGroup } from "react-icons/gr";
 
 const Header = () => {
   const img = [
-    "/image/teacher-1.png",
-    "/image/teacher-5.png",
-    "/image/teacher-6.png",
+    "./image/teacher-1.png",
+    "./image/teacher-5.png",
+    "./image/teacher-6.png",
   ];
 
   const view = [
@@ -48,9 +48,9 @@ const Header = () => {
             A new campaign launch work for brand new feature in May month
           </p>
         </div>
-          <button className="mr-auto bg-black py-3 px-7 text-white rounded-lg uppercase text-sm whitespace-nowrap">
-            Add members
-          </button>
+        <button className="mr-auto bg-black py-3 px-7 text-white rounded-lg uppercase text-sm whitespace-nowrap">
+          Add members
+        </button>
       </div>
 
       <div className="flex flex-col md:flex-row md:items-center md:justify-between py-12">
