@@ -2,15 +2,15 @@ import { BsThreeDotsVertical, BsListCheck } from "react-icons/bs";
 import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
 
+import { useEffect, useState } from "react";
+
 export const Cards = ({ data, handleDel }) => {
   // console.log(data);
   return (
     <main>
       {/* <div className="w-full grid md:gird-cols-2 lg:grid-cols-3 gap-16 lg:gap-4 xl:gap-10"> */}
-     
-      <section className="flex flex-col gap-5">
-        
 
+      <section className="flex flex-col gap-5">
         {data.map((each, idx) => {
           const { id, task, no_task, pro_image, title, desc, bar, img } = each;
           return (
@@ -56,11 +56,13 @@ export const Cards = ({ data, handleDel }) => {
             </div>
           );
         })}
-      </section> 
+      </section>
 
-      {data.length === 0 && <div className="mt-5 text-center">
-        <p className="">"No Task"</p>
-      </div>}
+      {data.length === 0 && (
+        <div className="mt-5 text-center">
+          <p className="">"No Task"</p>
+        </div>
+      )}
     </main>
   );
 };
@@ -71,6 +73,14 @@ export const ModalPage = ({
   setNewTask,
   handleAdd,
 }) => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  useEffect(() => {
+    newTask.title.trim() === "" || newTask.desc.trim() === ""
+      ? setIsButtonDisabled(true)
+      : setIsButtonDisabled(false);
+  }, [newTask]);
+
   return (
     <div className="w-full h-screen fixed top-0 left-0 bg-[#00000099] p-5 z-[100]">
       <div className="w-full h-full grid place-items-center">
@@ -120,7 +130,8 @@ export const ModalPage = ({
           <div className="w-full flex justify-center mt-8">
             <button
               type="submit"
-              className="bg-[#adabb2] rounded-lg py-3 px-8 hover:bg-[#45269c]"
+              className="bg-purple-950 text-white rounded-lg py-3 px-8 hover:bg-[#45269c] active:scale-90 transition-all duration-300 ease-in disabled:opacity-50"
+              disabled={isButtonDisabled}
             >
               Add Task
             </button>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { todoObj, inProgress, completedData } from "./data/data";
 import Todo from "./Todo";
@@ -109,7 +109,7 @@ const Body = () => {
           setNewTask={setNewTask}
           handleAdd={handleAddTodo}
           // handleDel={handleDel}
-          handleDel={(id) => handleDel(id, todoArr, setTodoArr)} 
+          handleDel={(id) => handleDel(id, todoArr, setTodoArr)}
         />
 
         <InProgress
@@ -121,7 +121,7 @@ const Body = () => {
           setInProgressArr={setInProgressArr}
           handleAdd={handleAddInProgress}
           // handleDel={handleDel}
-          handleDel={(id) => handleDel(id, inProgressArr, setInProgressArr)} 
+          handleDel={(id) => handleDel(id, inProgressArr, setInProgressArr)}
         />
 
         <Completed
@@ -133,7 +133,7 @@ const Body = () => {
           setCompletedArr={setCompletedArr}
           handleAdd={handleAddCompleted}
           // handleDel={handleDel}
-          handleDel={(id) => handleDel(id, completedArr, setCompletedArr)} 
+          handleDel={(id) => handleDel(id, completedArr, setCompletedArr)}
         />
       </div>
     </main>
