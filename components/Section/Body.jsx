@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { todoObj, inProgress, completedData } from "./data/data";
 import Todo from "./Todo";
@@ -6,6 +6,7 @@ import InProgress from "./InProgress";
 import Completed from "./Completed";
 
 const Body = () => {
+  let cleared = { title: "", desc: "" };
   // const [modalOpen, setModalOpen] = useState(false);
   const [todoModalOpen, setTodoModalOpen] = useState(false);
   const [inProgressModalOpen, setInProgressModalOpen] = useState(false);
@@ -15,31 +16,36 @@ const Body = () => {
   const [inProgressArr, setInProgressArr] = useState(inProgress);
   const [completedArr, setCompletedArr] = useState(completedData);
 
-  const [newTask, setNewTask] = useState({
-    title: "",
-    desc: "",
-  });
+  const [newTask, setNewTask] = useState(cleared);
+
+  const isFilled = function () {
+    if (newTask.title.trim() === "" || newTask.desc.trim() === "") {
+      // to create a warning sign later and don't add tasks with empty title or description
+      return;
+    }
+  };
+
+  const addTaskToCategory = (categoryArray, setCategoryArray, newTask) => {
+    setCategoryArray([
+      ...categoryArray,
+      {
+        // id: Math.max(...todoArr.map((task) => task.id), 0) + 1,
+        id: categoryArray.length + 1,
+        title: newTask.title,
+        desc: newTask.desc,
+      },
+    ]);
+  };
 
   // to use global context on this soon
   const handleAddTodo = (e) => {
     e.preventDefault();
 
-    if (newTask.title.trim() === "" || newTask.desc.trim() === "") {
-      // to create a warning sign later and don't add tasks with empty title or description
-      return;
-    }
-    setTodoArr([
-      ...todoArr,
-      {
-        // id: Math.max(...todoArr.map((task) => task.id), 0) + 1,
-        id: todoArr.length + 1,
-        title: newTask.title,
-        desc: newTask.desc,
-      },
-    ]);
+    isFilled();
+    addTaskToCategory(todoArr, setTodoArr, newTask);
 
     // Clear the input fields
-    setNewTask({ title: "", desc: "" });
+    setNewTask(cleared);
 
     // Close the modal
     setTodoModalOpen(false);
@@ -48,22 +54,12 @@ const Body = () => {
   const handleAddInProgress = (e) => {
     e.preventDefault();
 
-    if (newTask.title.trim() === "" || newTask.desc.trim() === "") {
-      // to create a warning sign later and don't add tasks with empty title or description
-      return;
-    }
-    setInProgressArr([
-      ...inProgressArr,
-      {
-        // id: Math.max(...inProgressArr.map((task) => task.id), 0) + 1,
-        id: inProgressArr.length + 1,
-        title: newTask.title,
-        desc: newTask.desc,
-      },
-    ]);
+    isFilled();
+
+    addTaskToCategory(inProgressArr, setInProgressArr, newTask);
 
     // Clear the input fields
-    setNewTask({ title: "", desc: "" });
+    setNewTask(cleared);
 
     // Close the modal
     setInProgressModalOpen(false);
@@ -72,22 +68,12 @@ const Body = () => {
   const handleAddCompleted = (e) => {
     e.preventDefault();
 
-    if (newTask.title.trim() === "" || newTask.desc.trim() === "") {
-      // to create a warning sign later and don't add tasks with empty title or description
-      return;
-    }
-    setCompletedArr([
-      ...completedArr,
-      {
-        // id: Math.max(...todoArr.map((task) => task.id), 0) + 1,
-        id: todoArr.length + 1,
-        title: newTask.title,
-        desc: newTask.desc,
-      },
-    ]);
+    isFilled();
+
+    addTaskToCategory(completedArr, setCompletedArr, newTask);
 
     // Clear the input fields
-    setNewTask({ title: "", desc: "" });
+    setNewTask(cleared);
 
     // Close the modal
     setCompletedModalOpen(false);
