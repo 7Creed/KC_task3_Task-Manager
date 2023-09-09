@@ -15,11 +15,11 @@ export const todoObj = [
     id: 1,
     task: "To Do",
     no_task: 2,
-    pro_image: "/image/card-image-1.png",
+    pro_image: "./image/card-image-1.png",
     title: "Highfidelity Design",
     desc: "Make clear design and color",
     bar: "",
-    img: "/image/teacher-1.png",
+    img: "./image/teacher-1.png",
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ export const todoObj = [
     title: "Usability Design",
     desc: "Make clear design and color",
     bar: "",
-    img: "/image/teacher-1.png",
+    img: "./image/teacher-1.png",
   },
 ];
 
@@ -38,11 +38,11 @@ export const inProgress = [
     id: 1,
     task: "In Progress",
     no_task: 1,
-    pro_image: "/image/card-image-2.png",
+    pro_image: "./image/card-image-2.png",
     title: "Highfidelity Design",
     desc: "Make clear design and color, and see the beauty of the picture",
     bar: "",
-    img: "/image/teacher-5.png",
+    img: "./image/teacher-5.png",
   },
 ];
 
@@ -51,12 +51,12 @@ export const completedData = [
     id: 1,
     task: "Completed",
     no_task: 2,
-    pro_image: "/image/card-image-3.png",
+    pro_image: "./image/card-image-3.png",
     title: "Usability Design",
     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa",
 
     bar: "",
-    img: "/image/teacher-6.png",
+    img: "./image/teacher-6.png",
   },
   {
     id: 2,
@@ -67,7 +67,7 @@ export const completedData = [
     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa",
 
     bar: "",
-    img: "/image/teacher-6.png",
+    img: "./image/teacher-6.png",
   },
 ];
 
