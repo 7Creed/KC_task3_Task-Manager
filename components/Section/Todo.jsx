@@ -11,6 +11,7 @@ const Todo = ({
   setTodoArr,
   handleAdd,
   handleDel,
+  dueDateRef,
 }) => {
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -30,6 +31,7 @@ const Todo = ({
       </div>
       <Cards
         data={todoArr}
+        status={false}
         handleDel={(id) => handleDel(id, todoArr, setTodoArr)}
       />
       <button
@@ -46,6 +48,8 @@ const Todo = ({
           newTask={newTask}
           setNewTask={setNewTask}
           handleAdd={handleAdd}
+          dueDateRef={dueDateRef}
+          showDueDate={true}
         />
       )}
     </div>

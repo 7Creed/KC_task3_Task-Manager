@@ -19,6 +19,7 @@ export const todoObj = [
     title: "Highfidelity Design",
     desc: "Make clear design and color",
     bar: "",
+    due_date: "2015-09-09",
     img: "./image/teacher-1.png",
   },
   {
@@ -42,6 +43,7 @@ export const inProgress = [
     title: "Highfidelity Design",
     desc: "Make clear design and color, and see the beauty of the picture",
     bar: "",
+    due_date: "2015-09-09",
     img: "./image/teacher-5.png",
   },
 ];

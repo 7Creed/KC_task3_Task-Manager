@@ -2,17 +2,26 @@ import { BsThreeDotsVertical, BsListCheck } from "react-icons/bs";
 import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-export const Cards = ({ data, handleDel }) => {
-  // console.log(data);
+export const Cards = ({ data, handleDel, status }) => {
   return (
     <main>
       {/* <div className="w-full grid md:gird-cols-2 lg:grid-cols-3 gap-16 lg:gap-4 xl:gap-10"> */}
 
       <section className="flex flex-col gap-5">
         {data.map((each, idx) => {
-          const { id, task, no_task, pro_image, title, desc, bar, img } = each;
+          const {
+            id,
+            task,
+            no_task,
+            pro_image,
+            title,
+            desc,
+            bar,
+            img,
+            due_date,
+          } = each;
           return (
             <div key={id} className="flex flex-col bg-white rounded-xl p-4">
               <img src={pro_image} alt="" className="pb-4" />
@@ -35,6 +44,12 @@ export const Cards = ({ data, handleDel }) => {
                 </div>
                 <div className="">
                   <span className="">{bar}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="font-semibold text-[#10171b] text-sm opacity-60">
+                    {status ? "Completed" : "Due Date:"}
+                  </span>
+                  <span className="">{due_date}</span>
                 </div>
                 <div className="w-full flex items-center justify-between">
                   <div className="flex items-center gap-5 opacity-60">
@@ -72,6 +87,8 @@ export const ModalPage = ({
   newTask,
   setNewTask,
   handleAdd,
+  dueDateRef,
+  showDueDate,
 }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
@@ -104,7 +121,7 @@ export const ModalPage = ({
               </span>
               <input
                 type="text"
-                value={newTask?.title}
+                value={newTask.title}
                 placeholder="Enter task title"
                 onChange={(e) =>
                   setNewTask({ ...newTask, title: e.target.value })
@@ -118,7 +135,7 @@ export const ModalPage = ({
               </span>
               <input
                 type="text"
-                value={newTask?.desc}
+                value={newTask.desc}
                 placeholder="Enter task description"
                 onChange={(e) =>
                   setNewTask({ ...newTask, desc: e.target.value })
@@ -126,6 +143,23 @@ export const ModalPage = ({
                 className="w-full border border-gray-400 text-base text-black placeholder:text-[#666666] px-3 py-4 bg-transparent outline-none rounded-[0.5rem]"
               />
             </label>
+            {showDueDate && (
+              <div className="flex flex-col">
+                <label htmlFor="dueDate" className="">
+                  <span className="font-semibold text-[#10171b] text-xs mb-2">
+                    Due Date:
+                  </span>
+                  <input
+                    type="date"
+                    // value={newTask.due_date}
+                    ref={dueDateRef}
+                    id="dueDate"
+                    className="w-full border border-gray-400 text-base text-black placeholder:text-[#666666] px-3 py-4 bg-transparent outline-none rounded-[0.5rem]"
+                    // onChange={(e) => {setSelectedDueDate(e.target.val)}}
+                  />
+                </label>
+              </div>
+            )}
           </fieldset>
           <div className="w-full flex justify-center mt-8">
             <button

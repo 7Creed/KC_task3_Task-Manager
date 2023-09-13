@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import { todoObj, inProgress, completedData } from "./data/data";
 import Todo from "./Todo";
@@ -6,17 +6,20 @@ import InProgress from "./InProgress";
 import Completed from "./Completed";
 
 const Body = () => {
-  let cleared = { title: "", desc: "" };
+  let cleared = { title: "", desc: "", due_date: "" };
   // const [modalOpen, setModalOpen] = useState(false);
   const [todoModalOpen, setTodoModalOpen] = useState(false);
   const [inProgressModalOpen, setInProgressModalOpen] = useState(false);
   const [completedModalOpen, setCompletedModalOpen] = useState(false);
+  const [selectDueDate, setSelectedDueDate] = useState(null);
 
   const [todoArr, setTodoArr] = useState(todoObj);
   const [inProgressArr, setInProgressArr] = useState(inProgress);
   const [completedArr, setCompletedArr] = useState(completedData);
 
   const [newTask, setNewTask] = useState(cleared);
+
+  const dueDateRef = useRef(null);
 
   const isFilled = function () {
     if (newTask.title.trim() === "" || newTask.desc.trim() === "") {
@@ -33,6 +36,8 @@ const Body = () => {
         id: categoryArray.length + 1,
         title: newTask.title,
         desc: newTask.desc,
+        // due_date: newTask.due_date,
+        due_date: dueDateRef.current.value || newTask.due_date,
       },
     ]);
   };
@@ -49,7 +54,10 @@ const Body = () => {
 
     // Close the modal
     setTodoModalOpen(false);
+    console.log(todoArr);
+    console.log(dueDateRef.current.value);
   };
+  // console.log(dueDateRef.current.value)
 
   const handleAddInProgress = (e) => {
     e.preventDefault();
@@ -96,6 +104,7 @@ const Body = () => {
           handleAdd={handleAddTodo}
           // handleDel={handleDel}
           handleDel={(id) => handleDel(id, todoArr, setTodoArr)}
+          dueDateRef={dueDateRef}
         />
 
         <InProgress
@@ -108,6 +117,7 @@ const Body = () => {
           handleAdd={handleAddInProgress}
           // handleDel={handleDel}
           handleDel={(id) => handleDel(id, inProgressArr, setInProgressArr)}
+          dueDateRef={dueDateRef}
         />
 
         <Completed

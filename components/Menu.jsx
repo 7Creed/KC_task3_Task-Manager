@@ -3,17 +3,12 @@ import { menu } from "./Section/data/data";
 import "../styles/global.css";
 
 import { BsLightningCharge } from "react-icons/bs";
-import {
-  AiOutlineMenu,
-  AiOutlineClose,
-  AiOutlinePlus,
-} from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
 
 const Menu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleOpenMenu = () => {
-    console.log("abeg")
     setMenuOpen(true);
   };
 
@@ -32,8 +27,8 @@ const Menu = () => {
 
         <div
           className={`ham-overlay ${
-            menuOpen ? "translate-x-0" : "-translate-x-full"
-          } lg:translate-x-0 text-white fixed lg:relative top-0 left-0 w-full h-full bg-[#00000099] lg:bg-transparent opacity-100 transition-transform duration-1000 delay-200 lg:delay-0 lg:duration-0 ease-in-out z-10`}
+            menuOpen ? "translate-x-0" : "translate-x-full"
+          } fixed lg:translate-x-0 lg:relative text-white top-0 left-0 w-full h-full bg-[#00000099] lg:bg-transparent opacity-100 transition-transform duration-1000 delay-200 lg:delay-0 lg:duration-0 ease-in-out z-10`}
         >
           <div className="ham flex w-full h-full absolute lg:relative top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-20">
             <nav className="flex flex-col justify-between w-[300px] h-full bg-[#1D1042] text-center z-30 px-8 py-6">
@@ -88,4 +83,3 @@ const Menu = () => {
 };
 
 export default Menu;
-

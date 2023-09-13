@@ -10,10 +10,10 @@ const InProgress = ({
   setInProgressArr,
   handleAdd,
   handleDel,
+  dueDateRef,
 }) => {
   const handleOpenModal = () => {
     setModalOpen(true);
-    console.log("lfks");
   };
 
   const handleCloseModal = () => {
@@ -30,6 +30,7 @@ const InProgress = ({
       </div>
       <Cards
         data={inProgressArr}
+        status={false}
         handleDel={(id) => handleDel(id, inProgressArr, setInProgressArr)}
       />
       <button
@@ -46,6 +47,8 @@ const InProgress = ({
           newTask={newTask}
           setNewTask={setNewTask}
           handleAdd={handleAdd}
+          dueDateRef={dueDateRef}
+          showDueDate={true}
         />
       )}
     </div>
