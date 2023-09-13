@@ -27,7 +27,7 @@ const Menu = () => {
 
         <div
           className={`ham-overlay ${
-            menuOpen ? "translate-x-0" : "translate-x-full"
+            menuOpen ? "translate-x-0" : "-translate-x-full"
           } fixed lg:translate-x-0 lg:relative text-white top-0 left-0 w-full h-full bg-[#00000099] lg:bg-transparent opacity-100 transition-transform duration-1000 delay-200 lg:delay-0 lg:duration-0 ease-in-out z-10`}
         >
           <div className="ham flex w-full h-full absolute lg:relative top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-20">
